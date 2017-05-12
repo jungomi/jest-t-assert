@@ -44,6 +44,11 @@ test('all assertions are successful with the imported t', () => {
   t.plan(15);
 });
 
+// Omitting the message is allowed
+tTest(t => {
+  t.pass();
+});
+
 function delayedMessage(msg, ms) {
   return new Promise(resolve => setTimeout(() => resolve(msg), ms));
 }
@@ -57,4 +62,12 @@ tTest('async/await works correctly', async t => {
   t.plan(1);
   const msg = await delayedMessage('hello', 500);
   t.snapshot(msg);
+});
+
+tTest.cb('asynchronous with callback is supported', t => {
+  t.plan(1);
+  delayedMessage('hello', 500).then(msg => {
+    t.snapshot(msg);
+    t.end();
+  });
 });

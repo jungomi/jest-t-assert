@@ -16,4 +16,6 @@ Object {
 
 exports[`async/await works correctly 1`] = `"hello"`;
 
+exports[`asynchronous with callback is supported 1`] = `"hello"`;
+
 exports[`returning a promise is handled correctly 1`] = `"hello"`;

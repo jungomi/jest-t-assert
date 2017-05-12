@@ -19,22 +19,58 @@ export const t = {
   snapshot: actual => expect(actual).toMatchSnapshot()
 };
 
-export default (...args) => {
-  let message;
-  let fn;
-
+function testArgs(args) {
   if (typeof args[0] === 'function') {
-    fn = args[0];
-  } else {
-    message = args[0];
-    fn = args[1];
+    return { fn: args[0] };
   }
 
+  return {
+    message: args[0],
+    fn: args[1]
+  };
+}
+
+function runTest(testFn, args) {
+  const { message, fn } = testArgs(args);
   if (typeof fn === 'function') {
-    test(message, () => fn(t));
+    testFn(message, () => fn(t));
   } else {
-    test(message, () => {
+    testFn(message, () => {
       throw new TypeError(`Expected a function - got ${typeof fn}`);
     });
   }
-};
+}
+
+function runTestWithCallback(testFn, args) {
+  const { message, fn } = testArgs(args);
+  if (typeof fn === 'function') {
+    testFn(message, done => fn(Object.assign({ end: done }, t)));
+  } else {
+    testFn(message, () => {
+      throw new TypeError(`Expected a function - got ${typeof fn}`);
+    });
+  }
+}
+
+function tTest(...args) {
+  runTest(test, args);
+}
+
+function testCb(...args) {
+  runTestWithCallback(test, args);
+}
+
+function testOnly(...args) {
+  runTest(test.only, args);
+}
+
+function testCbOnly(...args) {
+  runTestWithCallback(test.only, args);
+}
+
+tTest.cb = testCb;
+tTest.only = testOnly;
+tTest.cb.only = testCbOnly;
+tTest.only.cb = testCbOnly;
+
+export default tTest;
