@@ -64,65 +64,21 @@ function tTest(...args) {
   runTest(test, args);
 }
 
-function testCb(...args) {
-  runTestWithCallback(test, args);
-}
-
-function testOnly(...args) {
-  runTest(test.only, args);
-}
-
-function testCbOnly(...args) {
-  runTestWithCallback(test.only, args);
-}
-
-function testAfter(fn) {
-  runHook(afterAll, fn);
-}
-
-function testAfterCb(fn) {
-  runHookWithCallback(afterAll, fn);
-}
-
-function testAfterEach(fn) {
-  runHook(afterEach, fn);
-}
-
-function testAfterEachCb(fn) {
-  runHookWithCallback(afterEach, fn);
-}
-
-function testBefore(fn) {
-  runHook(beforeAll, fn);
-}
-
-function testBeforeCb(fn) {
-  runHookWithCallback(beforeAll, fn);
-}
-
-function testBeforeEach(fn) {
-  runHook(beforeEach, fn);
-}
-
-function testBeforeEachCb(fn) {
-  runHookWithCallback(beforeEach, fn);
-}
-
-tTest.cb = testCb;
-tTest.only = testOnly;
-tTest.cb.only = testCbOnly;
-tTest.only.cb = testCbOnly;
-tTest.after = testAfter;
-tTest.after.cb = testAfterCb;
-tTest.cb.after = testAfterCb;
-tTest.afterEach = testAfterEach;
-tTest.afterEach.cb = testAfterEachCb;
-tTest.cb.afterEach = testAfterEachCb;
-tTest.before = testBefore;
-tTest.before.cb = testBeforeCb;
-tTest.cb.before = testBeforeCb;
-tTest.beforeEach = testBeforeEach;
-tTest.beforeEach.cb = testBeforeEachCb;
-tTest.cb.beforeEach = testBeforeEachCb;
+tTest.cb = (...args) => runTestWithCallback(test, args);
+tTest.only = (...args) => runTest(test.only, args);
+tTest.only.cb = (...args) => runTestWithCallback(test.only, args);
+tTest.cb.only = tTest.only.cb;
+tTest.after = fn => runHook(afterAll, fn);
+tTest.after.cb = fn => runHookWithCallback(afterAll, fn);
+tTest.cb.after = tTest.after.cb;
+tTest.afterEach = fn => runHook(afterEach, fn);
+tTest.afterEach.cb = fn => runHookWithCallback(afterEach, fn);
+tTest.cb.afterEach = tTest.afterEach.cb;
+tTest.before = fn => runHook(beforeAll, fn);
+tTest.before.cb = fn => runHookWithCallback(beforeAll, fn);
+tTest.cb.before = tTest.before.cb;
+tTest.beforeEach = fn => runHook(beforeEach, fn);
+tTest.beforeEach.cb = fn => runHookWithCallback(beforeEach, fn);
+tTest.cb.beforeEach = tTest.beforeEach.cb;
 
 export default tTest;
