@@ -52,6 +52,14 @@ function runTestWithCallback(testFn, args) {
   }
 }
 
+function runHook(hookFn, fn) {
+  hookFn(() => fn(t));
+}
+
+function runHookWithCallback(hookFn, fn) {
+  hookFn(done => fn(Object.assign({ end: done }, t)));
+}
+
 function tTest(...args) {
   runTest(test, args);
 }
@@ -68,9 +76,53 @@ function testCbOnly(...args) {
   runTestWithCallback(test.only, args);
 }
 
+function testAfter(fn) {
+  runHook(afterAll, fn);
+}
+
+function testAfterCb(fn) {
+  runHookWithCallback(afterAll, fn);
+}
+
+function testAfterEach(fn) {
+  runHook(afterEach, fn);
+}
+
+function testAfterEachCb(fn) {
+  runHookWithCallback(afterEach, fn);
+}
+
+function testBefore(fn) {
+  runHook(beforeAll, fn);
+}
+
+function testBeforeCb(fn) {
+  runHookWithCallback(beforeAll, fn);
+}
+
+function testBeforeEach(fn) {
+  runHook(beforeEach, fn);
+}
+
+function testBeforeEachCb(fn) {
+  runHookWithCallback(beforeEach, fn);
+}
+
 tTest.cb = testCb;
 tTest.only = testOnly;
 tTest.cb.only = testCbOnly;
 tTest.only.cb = testCbOnly;
+tTest.after = testAfter;
+tTest.after.cb = testAfterCb;
+tTest.cb.after = testAfterCb;
+tTest.afterEach = testAfterEach;
+tTest.afterEach.cb = testAfterEachCb;
+tTest.cb.afterEach = testAfterEachCb;
+tTest.before = testBefore;
+tTest.before.cb = testBeforeCb;
+tTest.cb.before = testBeforeCb;
+tTest.beforeEach = testBeforeEach;
+tTest.beforeEach.cb = testBeforeEachCb;
+tTest.cb.beforeEach = testBeforeEachCb;
 
 export default tTest;
