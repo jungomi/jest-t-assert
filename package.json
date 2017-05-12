@@ -15,6 +15,7 @@
     "lint": "eslint .",
     "test": "jest",
     "test-update": "jest -u",
+    "test-watch": "jest --watch",
     "prepublish": "yarn run clean && yarn run build"
   },
   "peerDependencies": {
