@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`all assertions are successful with t as callback 1`] = `
+Object {
+  "end": "xyz",
+  "start": "abc",
+}
+`;
+
+exports[`all assertions are successful with the imported t 1`] = `
+Object {
+  "end": "xyz",
+  "start": "abc",
+}
+`;
+
+exports[`async/await works correctly 1`] = `"hello"`;
+
+exports[`returning a promise is handled correctly 1`] = `"hello"`;
