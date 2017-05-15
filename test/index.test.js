@@ -71,3 +71,12 @@ tTest.cb('asynchronous with callback is supported', t => {
     t.end();
   });
 });
+
+tTest.skip('the test is skipped', t => {
+  t.fail();
+});
+
+tTest.cb.skip('callback test is skipped', t => {
+  t.fail();
+  t.end();
+});
