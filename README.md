@@ -1,5 +1,8 @@
 # jest-t-assert
 
+[![Build Status][travis-badge]][travis]
+[![npm][npm-badge]][npm-link]
+
 Use [tape][tape] style assertions with [Jest][jest]. The assertions are very
 similar to [AVA][ava].
 
@@ -198,4 +201,8 @@ Assert that `actual` matches the most recent snapshot.
 [ava]: https://github.com/avajs/ava
 [codemods]: https://github.com/skovhus/jest-codemods
 [jest]: https://github.com/facebook/jest
+[npm-badge]: https://img.shields.io/npm/v/jest-t-assert.svg?style=flat-square
+[npm-link]: https://www.npmjs.com/package/jest-t-assert
 [tape]: https://github.com/substack/tape
+[travis]: https://travis-ci.org/jungomi/jest-t-assert
+[travis-badge]: https://img.shields.io/travis/jungomi/jest-t-assert/master.svg?style=flat-square
