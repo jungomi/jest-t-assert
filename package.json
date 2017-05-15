@@ -1,6 +1,7 @@
 {
   "name": "jest-t-assert",
   "version": "0.1.0",
+  "description": "Use tape style assertions with Jest",
   "main": "lib/index.js",
   "module": "src/index.js",
   "author": "Michael Jungo <michaeljungo92@gmail.com>",
@@ -8,6 +9,22 @@
   "engines": {
     "node": ">=6"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jungomi/jest-t-assert.git"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "assert",
+    "assertion",
+    "jest",
+    "tape",
+    "test",
+    "testing"
+  ],
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
