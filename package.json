@@ -36,7 +36,7 @@
     "prepublish": "yarn run clean && yarn run build"
   },
   "peerDependencies": {
-    "jest": "^21.0.1"
+    "jest": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
