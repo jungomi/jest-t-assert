@@ -21,19 +21,20 @@ export const t = {
 
 function testArgs(args) {
   if (typeof args[0] === 'function') {
-    return { fn: args[0] };
+    return { fn: args[0], timeout: args[1] };
   }
 
   return {
     message: args[0],
-    fn: args[1]
+    fn: args[1],
+    timeout: args[2]
   };
 }
 
 function runTest(testFn, args) {
-  const { message, fn } = testArgs(args);
+  const { message, fn, timeout } = testArgs(args);
   if (typeof fn === 'function') {
-    testFn(message, () => fn(t));
+    testFn(message, () => fn(t), timeout);
   } else {
     testFn(message, () => {
       throw new TypeError(`Expected a function - got ${typeof fn}`);
@@ -42,9 +43,9 @@ function runTest(testFn, args) {
 }
 
 function runTestWithCallback(testFn, args) {
-  const { message, fn } = testArgs(args);
+  const { message, fn, timeout } = testArgs(args);
   if (typeof fn === 'function') {
-    testFn(message, done => fn(Object.assign({ end: done }, t)));
+    testFn(message, done => fn(Object.assign({ end: done }, t)), timeout);
   } else {
     testFn(message, () => {
       throw new TypeError(`Expected a function - got ${typeof fn}`);
