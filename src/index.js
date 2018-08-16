@@ -21,7 +21,7 @@ export const t = {
 
 function testArgs(args) {
   if (typeof args[0] === 'function') {
-    return { fn: args[0], timeout: args[1] };
+    return { message: '', fn: args[0], timeout: args[1] };
   }
 
   return {
