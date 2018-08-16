@@ -84,22 +84,26 @@ test.cb('a callback', t => {
 
 ## API
 
-### `test([title], fn)`
+### `test([title], fn, [timeout])`
 
 Run a test. `fn` will receive `t` as the first argument, which provides the
-assertions.
+assertions. The `timeout` specifies how long (in milliseconds) to wait until the
+test is aborted.
 
-#### `test.cb([title], fn)`
+#### `test.cb([title], fn, [timeout])`
 
 Run a test in callback mode. `fn` will receive `t`, which provides the usual
 assertions and additionally `t.end()`, which must be called to manually end the
-test. `.cb` can be chained with any of modifiers listed below.
+test. `.cb` can be chained with any of modifiers listed below.  The `timeout`
+specifies how long (in milliseconds) to wait until the test is aborted.
 
-#### `test.only([title], fn)`
+#### `test.only([title], fn, [timeout])`
 
 Only run this test. All other tests in the test suite are skipped.
+The `timeout` specifies how long (in milliseconds) to wait until the test is
+aborted.
 
-#### `test.skip([title], fn)`
+#### `test.skip([title], fn, [timeout])`
 
 Skip the test. Useful to avoid a failing test without removing it or commenting
 it out.
